@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace ewallet_integration.Models
@@ -14,6 +15,8 @@ namespace ewallet_integration.Models
         public bool IsSuccess { get; set; }
         public string Message { get; set; }
 
-        [ForeignKey("WalletId")] public virtual Wallet Wallet { get; set; }
+        [ForeignKey("WalletId")] 
+        [JsonIgnore]
+        public virtual Wallet Wallet { get; set; }
     }
 }

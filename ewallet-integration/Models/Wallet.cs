@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace ewallet_integration.Models
 {
@@ -12,6 +13,7 @@ namespace ewallet_integration.Models
         public decimal Balance  { get; set; }
         public bool IsIdentified { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Deposit> Deposits { get; set; }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ewallet_integration.Context;
+using ewallet_integration.Middleware;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -55,8 +56,11 @@ namespace ewallet_integration
             app.UseRouting();
 
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            string secretKey = "wallet-inegration";
+            app.UseMiddleware<BodyHashMiddleware>(secretKey);
+            app.UseMiddleware<AuthMiddleware>();
+            
         }
     }
 }
